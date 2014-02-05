@@ -1,0 +1,79 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="WebRequest_test2.DirectionPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    shell:SystemTray.IsVisible="True">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="Back.png" Stretch="UniformToFill" />
+        </Grid.Background>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,60,28">
+        	<StackPanel.Background>
+        		<SolidColorBrush Color="{StaticResource PhoneBackgroundColor}" Opacity="0.8"/>
+        	</StackPanel.Background>
+            <TextBlock x:Name="ApplicationTitle" Text="Test" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="direction" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontSize="56" />
+        </StackPanel>
+
+
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <ProgressBar Name="progressBar1" Width="460" Margin="12,12,8,446" Visibility="{Binding Vis}" IsIndeterminate="True" />
+            <ListBox Height="530" HorizontalAlignment="Left" Margin="6,0,0,0" Name="DirectionList"  VerticalAlignment="Top" Width="444" SelectionChanged="DirectionList_SelectionChanged" >
+               
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Button Width="400" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch"  Click="Button_Click">
+                        	<Button.Foreground>
+                        		<SolidColorBrush Color="{StaticResource PhoneContrastBackgroundColor}"/>
+                        	</Button.Foreground>
+                        	<Button.BorderBrush>
+                        		<SolidColorBrush Color="{StaticResource PhoneContrastBackgroundColor}"/>
+                        	</Button.BorderBrush>
+                        	<Button.Background>
+                        		<SolidColorBrush Color="{StaticResource PhoneBackgroundColor}" Opacity="0.695"/>
+                        	</Button.Background>
+                            <Button.Content>
+                                <TextBlock Text="{Binding DirectionName}" HorizontalAlignment="Left"/>
+                            </Button.Content>
+                        </Button>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+        </Grid>
+    </Grid>
+
+    <!--Sample code showing usage of ApplicationBar-->
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity="0.75">
+            <shell:ApplicationBarIconButton IconUri="/Icon/appbar.home.rest.png" Text="Home" Click="Home_Click"/>
+            <shell:ApplicationBarIconButton IconUri="/Icon/appbar.favs.rest.png" Text="Favourites" Click="Fav_Click"/>
+            <shell:ApplicationBarIconButton IconUri="/Icon/appbar.refresh.rest.png" Text="Refresh" Click="Refresh_Click"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="Settings" Click="Settings_Click"/>
+                <shell:ApplicationBarMenuItem Text="About" Click="About_Click"/>
+                <shell:ApplicationBarMenuItem Text="Tiles" Click="Tiles_Click"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>
